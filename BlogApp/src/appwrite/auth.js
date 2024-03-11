@@ -15,6 +15,7 @@ export class AuthService{
 
     async CreateAccount({email , password , name}){
         try {
+            // console.log(ID.unique());
             const userAccount = await this.account.create(ID.unique(), email , password , name)
             if(userAccount) {
                 // call another method for the login
@@ -33,15 +34,19 @@ export class AuthService{
             throw error;
         }
     }
-    async getCurrentUser(){
-       try {
-        // return await this.account.get();
-         return await this.account.get();
-       } catch (error) {
-        console.log("Appwrite service getCurentUser :: error", error);
-       } 
-       return null;
+    
+    async getCurrentUser() {
+        try {
+            const res =  await this.account.get();
+            return res;
+        } catch (error) {
+            console.log("Appwrite serive :: getCurrentUser :: error", error);
+            
+        }
+        return null;
     }
+
+    
     async logout(){
         try {
             await this.account.deleteSessions();
@@ -53,4 +58,3 @@ export class AuthService{
 
 const authService = new AuthService();
 export default authService;
-

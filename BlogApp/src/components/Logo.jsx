@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Logo({width = '150px'}) {
+function Logo({width = '350px'}) {
   return (
-    <div>Logo</div>
+    <div style={{width: width}}>Logo</div>
   )
 }
 
